@@ -7,8 +7,8 @@ import axios from "axios";
 function Login() {
   const navigate = useNavigate();
   const [data, setData] = useState({
-    name: " ",
-    password: " ",
+    name: "",
+    password: "",
   });
 
   const loginUser = async (e) => {
@@ -53,7 +53,7 @@ function Login() {
               />
               <Input
                 onChange={(e) => {
-                  setData({ ...data, name: e.target.password });
+                  setData({ ...data, password: e.target.password });
                 }}
                 type="password"
                 size="lg"
