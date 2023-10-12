@@ -11,7 +11,8 @@ import Showdata from "./pages/Showdata";
 import { Toaster } from "react-hot-toast";
 
 import EditData from "./pages/EditData";
-axios.defaults.baseURL = "https://st-deimana-server.onrender.com:3000";
+axios.defaults.baseURL = "https://st-deimana-server.onrender.com";
+axios.defaults.withCredentials = true;
 
 function App() {
   return (
