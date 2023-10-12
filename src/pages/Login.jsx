@@ -19,13 +19,10 @@ function Login() {
         name,
         password,
       });
-      if (data.error) {
-        toast.error(data.error);
-      } else {
-        setData([]);
-        toast.success("Login successfull");
-        navigate("/database");
-      }
+
+      setData([]);
+      toast.success("Login successfull");
+      navigate("/database");
     } catch (error) {}
   };
   return (
