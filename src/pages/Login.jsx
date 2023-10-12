@@ -53,7 +53,7 @@ function Login() {
               />
               <Input
                 onChange={(e) => {
-                  setData({ ...data, password: e.target.password });
+                  setData({ ...data, password: e.target.value });
                 }}
                 type="password"
                 size="lg"
