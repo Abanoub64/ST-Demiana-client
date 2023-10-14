@@ -11,6 +11,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { Input } from "@material-tailwind/react";
 import { Spinnner } from "../components/Spinnner";
 import { MdOutlineAddBox } from "react-icons/md";
+import { PopoverDefault } from "../components/PopoverDefault";
 
 const TABLE_HEAD = [
   ,
@@ -84,26 +85,30 @@ function Database() {
                 })
                 .map((boy, index) => (
                   <tr key={boy._id} className="even:bg-blue-gray-50/50">
-                    <td className="p-4">
-                      <Typography
-                        as="a"
-                        href="#"
-                        variant="small"
-                        color="blue-gray"
-                        className="font-medium"
-                      >
-                        <div className="flex gap-x-4 justify-center">
-                          <Link to={`./${boy._id}`}>
-                            <BsInfoCircle className="text-2xl text-green-800" />
-                          </Link>
-                          <Link to={`./edit/${boy._id}`}>
-                            <AiOutlineEdit className="text-2xl text-yellow-600" />
-                          </Link>
-                          <Link to={`./delete/${boy._id}`}>
-                            <MdOutlineDelete className="text-2xl text-red-600" />
-                          </Link>
-                        </div>
-                      </Typography>
+                    <td className="p-4 flex  w-fit">
+                      <PopoverDefault
+                        content={
+                          <Typography
+                            as="a"
+                            href="#"
+                            variant="small"
+                            color="blue-gray"
+                            className="font-medium"
+                          >
+                            <div className="flex gap-x-4 justify-center">
+                              <Link to={`./${boy._id}`}>
+                                <BsInfoCircle className="text-2xl text-green-800" />
+                              </Link>
+                              <Link to={`./edit/${boy._id}`}>
+                                <AiOutlineEdit className="text-2xl text-yellow-600" />
+                              </Link>
+                              <Link to={`./delete/${boy._id}`}>
+                                <MdOutlineDelete className="text-2xl text-red-600" />
+                              </Link>
+                            </div>
+                          </Typography>
+                        }
+                      />
                     </td>
                     <td className="p-4">
                       <Chip
