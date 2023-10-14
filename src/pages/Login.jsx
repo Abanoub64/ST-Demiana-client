@@ -13,9 +13,20 @@ function Login() {
 
   const loginUser = async (e) => {
     e.preventDefault();
-
-    toast.success("Login successfull");
-    navigate("/database");
+    const { name, password } = data;
+    try {
+      const { data } = await axios.post("/login", {
+        name,
+        password,
+      });
+      if (data.error) {
+        toast.error(data.error);
+      } else {
+        setData([]);
+        toast.success("Login successfull");
+        navigate("/database");
+      }
+    } catch (error) {console.log(error);}
   };
   return (
     <>
