@@ -13,17 +13,9 @@ function Login() {
 
   const loginUser = async (e) => {
     e.preventDefault();
-    const { name, password } = data;
-    try {
-      const { data } = await axios.post("/login", {
-        name,
-        password,
-      });
 
-      setData([]);
-      toast.success("Login successfull");
-      navigate("/database");
-    } catch (error) {}
+    toast.success("Login successfull");
+    navigate("/database");
   };
   return (
     <>
