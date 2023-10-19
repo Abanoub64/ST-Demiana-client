@@ -7,8 +7,8 @@ import axios from "axios";
 function Login() {
   const navigate = useNavigate();
   const [data, setData] = useState({
-    name: "",
-    password: "",
+    name: " ",
+    password: " ",
   });
 
   const loginUser = async (e) => {
@@ -26,7 +26,7 @@ function Login() {
         toast.success("Login successfull");
         navigate("/database");
       }
-    } catch (error) {console.log(error);}
+    } catch (error) {}
   };
   return (
     <>
@@ -53,7 +53,7 @@ function Login() {
               />
               <Input
                 onChange={(e) => {
-                  setData({ ...data, password: e.target.value });
+                  setData({ ...data, name: e.target.password });
                 }}
                 type="password"
                 size="lg"
