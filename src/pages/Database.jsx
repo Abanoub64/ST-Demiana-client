@@ -2,8 +2,20 @@ import React, { useEffect, useState } from "react";
 import { AiOutlineEdit } from "react-icons/ai";
 import { BsInfoCircle } from "react-icons/bs";
 import { MdOutlineDelete } from "react-icons/md";
+import { IoPeopleSharp } from "react-icons/io5";
+import { FaBriefcaseMedical } from "react-icons/fa";
+import { FaChildren } from "react-icons/fa6";
+
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
-import { Card, Typography } from "@material-tailwind/react";
+import {
+  Button,
+  Card,
+  Popover,
+  PopoverContent,
+  PopoverHandler,
+  Typography,
+} from "@material-tailwind/react";
+import { FaLocationDot } from "react-icons/fa6";
 import axios from "axios";
 import { Chip } from "@material-tailwind/react";
 import Backbutton from "../components/Backbutton";
@@ -12,17 +24,13 @@ import { Input } from "@material-tailwind/react";
 import { Spinnner } from "../components/Spinnner";
 import { MdOutlineAddBox } from "react-icons/md";
 import { PopoverDefault } from "../components/PopoverDefault";
+import { MedTables } from "../components/MedTables";
+import { ChildrenshowingTable } from "../components/ChildrenshowingTable";
+import ParentComponent from "../components/DetailsForm";
+import DataLable from "../components/DataWithLable";
+import LocationData from "../components/LocationData";
 
-const TABLE_HEAD = [
-  ,
-  "",
-  "حالة رب الاسرة",
-  "اب الاعتراف",
-  "تاريخ الميلاد",
-  "الرقم",
-  "العنوان",
-  "الاسم",
-];
+const TABLE_HEAD = [, "", "العلاج", "الابناء", "السكن", "تفاصيل", "الاسم", ""];
 
 function Database() {
   const [isloading, setIsloading] = useState(false);
@@ -33,6 +41,8 @@ function Database() {
     setIsloading(true);
     axios.get("/database").then((res) => {
       setData(res.data);
+      console.log(res.data);
+
       setIsloading(false);
     });
   }, []);
@@ -40,9 +50,9 @@ function Database() {
     <div className=" p-4 mt-6">
       <div className="w-full p-5 flex flex-row-reverse justify-between">
         <Typography variant="h1" color="blue">
-          خدمة اولي و تانية
+          بيانات الكنيسة
         </Typography>
-        <div className="w-72">
+        <div className="w-72    items-center flex">
           <Input
             label="بحث بالاسم"
             icon={<MagnifyingGlassIcon className="h-5 w-5" />}
@@ -51,7 +61,7 @@ function Database() {
             }}
           />
           <Link to="/database/add">
-            <MdOutlineAddBox className="text-sky-800 text-4xl" />
+            <MdOutlineAddBox className="text-sky-800  hover:scale-110 transition-all active:scale-105 text-5xl" />
           </Link>
         </div>
       </div>
@@ -65,7 +75,7 @@ function Database() {
                 {TABLE_HEAD.map((head) => (
                   <th
                     key={head}
-                    className="border-b border-blue-gray-100 bg-blue-gray-50 p-4"
+                    className="border-b border-blue-gray-100 text-center bg-blue-gray-50 p-4"
                   >
                     <Typography
                       variant="small"
@@ -80,12 +90,17 @@ function Database() {
             </thead>
             <tbody>
               {data
-                .filter((boy) => {
-                  return search == "" ? boy : boy.name.includes(search);
-                })
-                .map((boy, index) => (
-                  <tr key={boy._id} className="even:bg-blue-gray-50/50">
-                    <td className="p-4 flex  w-fit">
+                // .filter((family) => {
+                //   return search == ""
+                //     ? family
+                //     : family.father.firstname.includes(search);
+                // })
+                .map((family, index) => (
+                  <tr
+                    key={family._id}
+                    className="even:bg-blue-gray-50/50  text-center justify-center"
+                  >
+                    <td className="p-4 items-center justify-center  w-fit">
                       <PopoverDefault
                         content={
                           <Typography
@@ -96,13 +111,13 @@ function Database() {
                             className="font-medium"
                           >
                             <div className="flex gap-x-4 justify-center">
-                              <Link to={`./${boy._id}`}>
+                              <Link to={`./${family._id}`}>
                                 <BsInfoCircle className="text-2xl text-green-800" />
                               </Link>
-                              <Link to={`./edit/${boy._id}`}>
+                              <Link to={`./edit/${family._id}`}>
                                 <AiOutlineEdit className="text-2xl text-yellow-600" />
                               </Link>
-                              <Link to={`./delete/${boy._id}`}>
+                              <Link to={`./delete/${family._id}`}>
                                 <MdOutlineDelete className="text-2xl text-red-600" />
                               </Link>
                             </div>
@@ -110,57 +125,67 @@ function Database() {
                         }
                       />
                     </td>
-                    <td className="p-4">
-                      <Chip
-                        className=" text-center "
-                        color={
-                          boy.satate == "عاجز"
-                            ? "green"
-                            : boy.satate == "اخوه رب"
-                            ? "amber"
-                            : boy.satate == "متوفي"
-                            ? "red"
-                            : ""
-                        }
-                        value={boy.satate}
-                      />
+
+                    <td>
+                      <Popover>
+                        <PopoverHandler>
+                          <Button color="green">
+                            <FaBriefcaseMedical className="text-xl" />
+                          </Button>
+                        </PopoverHandler>
+                        <PopoverContent>
+                          <MedTables data={family} />
+                        </PopoverContent>
+                      </Popover>
                     </td>
+                    <td>
+                      <Popover>
+                        <PopoverHandler>
+                          <Button color="indigo">
+                            <FaChildren className="text-xl" />
+                          </Button>
+                        </PopoverHandler>
+                        <PopoverContent>
+                          <ChildrenshowingTable data={family} />
+                        </PopoverContent>
+                      </Popover>
+                    </td>
+                    <td>
+                      <Popover>
+                        <PopoverHandler>
+                          <Button color="pink">
+                            <FaLocationDot
+                              className="text-xl"
+                              color="light-blue"
+                            />
+                          </Button>
+                        </PopoverHandler>
+                        <PopoverContent>
+                          <LocationData data={family.location} />
+                        </PopoverContent>
+                      </Popover>
+                    </td>
+                    <td>
+                      <Popover>
+                        <PopoverHandler>
+                          <Button color="teal">
+                            <IoPeopleSharp className="text-xl" />
+                          </Button>
+                        </PopoverHandler>
+                        <PopoverContent>
+                          <ParentComponent info={family} />
+                        </PopoverContent>
+                      </Popover>
+                    </td>
+
                     <td className="p-4">
                       <Typography
                         variant="small"
                         color="blue-gray"
-                        className="font-normal"
+                        className=" text-lg  font-normal"
                       >
-                        {boy.father}
-                      </Typography>
-                    </td>
-                    <td className="p-4">
-                      <Typography
-                        variant="small"
-                        color="blue-gray"
-                        className="font-normal"
-                      >
-                        {boy.day}/{boy.mon}/{boy.year}
-                      </Typography>
-                    </td>
-                    <td className="p-4">
-                      <Typography
-                        variant="small"
-                        color="blue-gray"
-                        className="font-normal"
-                      >
-                        {boy.phone}
-                        <br />
-                        {boy.phone2}
-                      </Typography>
-                    </td>
-                    <td className="p-4">
-                      <Typography
-                        variant="small"
-                        color="blue-gray"
-                        className="font-normal"
-                      >
-                        {boy.adress}
+                        {family.father.firstname} {family.father.secondname}{" "}
+                        {family.father.thirdname}
                       </Typography>
                     </td>
                     <td className="p-4">
@@ -169,7 +194,7 @@ function Database() {
                         color="blue-gray"
                         className=" text-lg font-normal"
                       >
-                        {boy.name}
+                        {index + 1}
                       </Typography>
                     </td>
                   </tr>

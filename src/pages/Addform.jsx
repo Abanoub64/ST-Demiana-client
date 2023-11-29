@@ -1,30 +1,85 @@
-import { Button, Stepper, Step } from "@material-tailwind/react";
+import { Button, Stepper, Step, Checkbox } from "@material-tailwind/react";
 import axios from "axios";
 import Backbutton from "../components/Backbutton";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Fatherform from "../components/Fatherform";
 import { useNavigate } from "react-router-dom";
 import AddChildrenForm from "../components/AddChildrenForm";
 import Homeform from "../components/Homeform";
+import toast from "react-hot-toast";
 
 import { ChildrenTable } from "../components/ChildrenTable";
 
 function Addform() {
+  const [data, setdata] = useState({});
+  const [father, setfather] = useState({});
+  const [mother, setmother] = useState({});
+  const [Childrenlist, setchildrensList] = useState([]);
+  const [location, setlocation] = useState({});
   const [activeStep, setActiveStep] = useState(0);
   const [isLastStep, setIsLastStep] = useState(false);
   const [isFirstStep, setIsFirstStep] = useState(false);
+  const [allOk, setAllOk] = useState(false);
 
-  const handleNext = () => !isLastStep && setActiveStep((cur) => cur + 1);
-  const handlePrev = () => !isFirstStep && setActiveStep((cur) => cur - 1);
+  const handleNext = () => {
+    !isLastStep && setActiveStep((cur) => cur + 1);
+  };
+  const handlePrev = () => {
+    !isFirstStep && setActiveStep((cur) => cur - 1);
+  };
+
+  const updatelocation = (locationdata) => {
+    setlocation(locationdata);
+  };
+  useEffect(
+    (fatherdata, motherdata, locationdata) => {
+      updateinfo(fatherdata, motherdata, locationdata);
+    },
+    [activeStep]
+  );
+  const updateinfo = (fatherdata, motherdata, locationdata) => {
+    setfather(fatherdata);
+    setmother(motherdata);
+    updatelocation(locationdata);
+  };
+
+  const createDataObject = () => {
+    return new Promise((resolve) => {
+      const newDataObject = {
+        father: father,
+        mother: mother,
+        Childrenlist: Childrenlist,
+        location: location,
+      };
+
+      setdata(newDataObject);
+      resolve();
+    });
+  };
+
+  const submitData = async () => {
+    const { father, mother, location, Childrenlist } = data;
+    try {
+      const response = await axios.post("/database", {
+        father: father,
+        mother: mother,
+        location: location,
+        Childrenlist: Childrenlist,
+      });
+      toast.success(response.data.success);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const navigate = useNavigate();
 
-  const [Childrenlist, setchildrensList] = useState([]);
+  const updatechildrenlist = (Input) => {
+    setchildrensList(Input);
+  };
 
   const addChild = (newchildrens) => {
     setchildrensList([...Childrenlist, newchildrens]);
-
-    console.log(Childrenlist);
   };
 
   return (
@@ -36,7 +91,8 @@ function Addform() {
         } mx-auto flex flex-col content-center p-4 justify-center
         `}
       >
-        <Fatherform /> {/*<<<< Father and wife Form   */}
+        <Fatherform updateinfo={updateinfo} />{" "}
+        {/*<<<< Father and wife Form   */}
       </div>
       <div
         className={`w-full ${
@@ -45,10 +101,33 @@ function Addform() {
         `}
       >
         <AddChildrenForm
+          setchildrensList={setchildrensList}
           addChildren={(newchildrens) => addChild(newchildrens)}
         />
         {/*<<<< AddChildrenForm Form   */}
-        <ChildrenTable Childrenlist={Childrenlist} /> {/*<<<< Table   */}
+        <ChildrenTable
+          Childrenlist={Childrenlist}
+          update={updatechildrenlist}
+        />{" "}
+        {/*<<<< Table   */}
+        <div className="mt-8 justify-center items-center gap-8 flex flex-row-reverse">
+          <Button
+            disabled={!allOk}
+            color="green"
+            onClick={() => {
+              submitData();
+            }}
+          >
+            حفظ
+          </Button>
+          <Checkbox
+            onClick={(e) => {
+              setAllOk(!allOk);
+              createDataObject();
+            }}
+            label="كل البيانات صحيحة ؟"
+          />
+        </div>
       </div>
       <div
         className={`w-full ${
@@ -56,9 +135,9 @@ function Addform() {
         } mx-auto flex flex-col content-center p-4 justify-center
         `}
       >
-        <Homeform /> {/*<<<< Address Form   */}
+        <Homeform updatelocation={updatelocation} /> {/*<<<< Address Form   */}
       </div>
-      <div className="w-full py-4 px-8">
+      <div className="w-full  py-4 px-8">
         <Stepper
           activeStep={activeStep}
           isLastStep={(value) => setIsLastStep(value)}
@@ -72,7 +151,13 @@ function Addform() {
           <Button onClick={handlePrev} disabled={isFirstStep}>
             Prev
           </Button>
-          <Button onClick={handleNext} disabled={isLastStep}>
+          <Button
+            onClick={() => {
+              handleNext();
+              updateinfo();
+            }}
+            disabled={isLastStep}
+          >
             Next
           </Button>
         </div>

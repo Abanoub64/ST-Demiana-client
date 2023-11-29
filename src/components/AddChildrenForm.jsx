@@ -3,8 +3,8 @@ import {
   Card,
   Input,
   Checkbox,
-  Button,
   Typography,
+  Button,
   Menu,
   MenuHandler,
   MenuList,
@@ -12,6 +12,7 @@ import {
   Stepper,
   Step,
 } from "@material-tailwind/react";
+import MedicineForm from "./MedicineForm";
 
 function AddChildrenForm(props) {
   const [newchildrens, setnewchildrens] = useState([
@@ -25,8 +26,14 @@ function AddChildrenForm(props) {
       disability: false,
       nameofdisability: "",
       confession: "",
+      medication: [],
     },
   ]);
+  const [ageName, setageName] = useState("");
+
+  const updateChildMED = (cMed) => {
+    setnewchildrens({ ...newchildrens, medication: cMed });
+  };
 
   return (
     <>
@@ -39,26 +46,26 @@ function AddChildrenForm(props) {
           <div className="mb-4  justify-center flex gap-6">
             <Input
               className="   arrow "
+              value={newchildrens.phone ? newchildrens.phone : ""}
               size="md"
               type="number"
               onChange={(e) => {
                 setnewchildrens({ ...newchildrens, phone: e.target.value });
-                console.log(newchildrens.phone);
               }}
               label="رقم الموبايل"
             />
             <Input
+              value={newchildrens.birthdate ? newchildrens.birthdate : ""}
               size="md"
               type="date"
               onChange={(e) => {
                 setnewchildrens({ ...newchildrens, birthdate: e.target.value });
-                console.log(newchildrens.birthdate);
               }}
               label="تاريخ الميلاد"
             />
             <Menu>
               <MenuHandler>
-                <Button>نوع</Button>
+                <Button>{newchildrens.sex ? newchildrens.sex : "نوع"}</Button>
               </MenuHandler>
               <MenuList className="max-h-72">
                 <MenuItem
@@ -78,6 +85,7 @@ function AddChildrenForm(props) {
               </MenuList>
             </Menu>
             <Input
+              value={newchildrens.name ? newchildrens.name : ""}
               size="md"
               type="text"
               onChange={(e) => {
@@ -90,18 +98,20 @@ function AddChildrenForm(props) {
           <div className="mb-4  justify-center flex gap-6">
             <Menu>
               <MenuHandler>
-                <Button>المرحلة التعليمة</Button>
+                <Button>{ageName ? ageName : "المرحلة التعليمة"}</Button>
               </MenuHandler>
               <MenuList className="max-h-72">
                 <MenuItem
                   onClick={(e) => {
                     setnewchildrens({ ...newchildrens, age_stage: 0 });
+                    setageName("حضانة");
                   }}
                 >
                   حضانة
                 </MenuItem>
                 <MenuItem
                   onClick={(e) => {
+                    setageName("Kg1");
                     setnewchildrens({ ...newchildrens, age_stage: 1 });
                   }}
                 >
@@ -109,6 +119,7 @@ function AddChildrenForm(props) {
                 </MenuItem>
                 <MenuItem
                   onClick={(e) => {
+                    setageName("Kg2");
                     setnewchildrens({ ...newchildrens, age_stage: 2 });
                   }}
                 >
@@ -116,6 +127,7 @@ function AddChildrenForm(props) {
                 </MenuItem>
                 <MenuItem
                   onClick={(e) => {
+                    setageName("اولي ابتدائي");
                     setnewchildrens({ ...newchildrens, age_stage: 3 });
                   }}
                 >
@@ -123,6 +135,7 @@ function AddChildrenForm(props) {
                 </MenuItem>
                 <MenuItem
                   onClick={(e) => {
+                    setageName("تانية ابتدائي");
                     setnewchildrens({ ...newchildrens, age_stage: 4 });
                   }}
                 >
@@ -130,6 +143,7 @@ function AddChildrenForm(props) {
                 </MenuItem>
                 <MenuItem
                   onClick={(e) => {
+                    setageName("تالتة ابتدائي");
                     setnewchildrens({ ...newchildrens, age_stage: 5 });
                   }}
                 >
@@ -137,6 +151,7 @@ function AddChildrenForm(props) {
                 </MenuItem>
                 <MenuItem
                   onClick={(e) => {
+                    setageName("رابعة ابتدائي");
                     setnewchildrens({ ...newchildrens, age_stage: 6 });
                   }}
                 >
@@ -144,6 +159,7 @@ function AddChildrenForm(props) {
                 </MenuItem>
                 <MenuItem
                   onClick={(e) => {
+                    setageName("خامسة ابتدائي");
                     setnewchildrens({ ...newchildrens, age_stage: 7 });
                   }}
                 >
@@ -151,6 +167,7 @@ function AddChildrenForm(props) {
                 </MenuItem>
                 <MenuItem
                   onClick={(e) => {
+                    setageName("سادسة ابتدائي");
                     setnewchildrens({ ...newchildrens, age_stage: 8 });
                   }}
                 >
@@ -158,6 +175,7 @@ function AddChildrenForm(props) {
                 </MenuItem>
                 <MenuItem
                   onClick={(e) => {
+                    setageName("اولي اعدادي");
                     setnewchildrens({ ...newchildrens, age_stage: 9 });
                   }}
                 >
@@ -165,6 +183,7 @@ function AddChildrenForm(props) {
                 </MenuItem>
                 <MenuItem
                   onClick={(e) => {
+                    setageName("تانية اعدادي");
                     setnewchildrens({ ...newchildrens, age_stage: 10 });
                   }}
                 >
@@ -172,6 +191,7 @@ function AddChildrenForm(props) {
                 </MenuItem>
                 <MenuItem
                   onClick={(e) => {
+                    setageName("تالتة اعدادي");
                     setnewchildrens({ ...newchildrens, age_stage: 11 });
                   }}
                 >
@@ -179,6 +199,7 @@ function AddChildrenForm(props) {
                 </MenuItem>
                 <MenuItem
                   onClick={(e) => {
+                    setageName("اولي ثانوي");
                     setnewchildrens({ ...newchildrens, age_stage: 12 });
                   }}
                 >
@@ -186,6 +207,7 @@ function AddChildrenForm(props) {
                 </MenuItem>
                 <MenuItem
                   onClick={(e) => {
+                    setageName("تانية ثانوي");
                     setnewchildrens({ ...newchildrens, age_stage: 13 });
                   }}
                 >
@@ -193,6 +215,7 @@ function AddChildrenForm(props) {
                 </MenuItem>
                 <MenuItem
                   onClick={(e) => {
+                    setageName("تالتة ثانوي");
                     setnewchildrens({ ...newchildrens, age_stage: 14 });
                   }}
                 >
@@ -200,6 +223,7 @@ function AddChildrenForm(props) {
                 </MenuItem>
                 <MenuItem
                   onClick={(e) => {
+                    setageName("جامعة");
                     setnewchildrens({ ...newchildrens, age_stage: 15 });
                   }}
                 >
@@ -207,6 +231,7 @@ function AddChildrenForm(props) {
                 </MenuItem>
                 <MenuItem
                   onClick={(e) => {
+                    setageName("خريج");
                     setnewchildrens({ ...newchildrens, age_stage: 16 });
                   }}
                 >
@@ -216,7 +241,11 @@ function AddChildrenForm(props) {
             </Menu>
             <Menu>
               <MenuHandler>
-                <Button>مستوي التعليم</Button>
+                <Button>
+                  {newchildrens.educationlevel
+                    ? newchildrens.educationlevel
+                    : "مستوي التعليم"}
+                </Button>
               </MenuHandler>
               <MenuList className="max-h-72">
                 <MenuItem
@@ -253,6 +282,7 @@ function AddChildrenForm(props) {
             </Menu>
             <Input
               size="md"
+              value={newchildrens.confession ? newchildrens.confession : ""}
               type="text"
               onChange={(e) => {
                 setnewchildrens({
@@ -285,6 +315,9 @@ function AddChildrenForm(props) {
               }}
               label="اعاقة او مرض"
             />
+          </div>
+          <div className="mb-4 border-black rounded-2xl justify-center flex gap-6">
+            <MedicineForm saveFucntion={updateChildMED} />
           </div>
           <Button
             onClick={() => {

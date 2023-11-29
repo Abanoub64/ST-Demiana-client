@@ -8,7 +8,15 @@ const educationlevelhead = [
   "جامعي",
   "دبلوم",
   "ماجستير",
-  "دكتوراة",
+  "دكتوراه",
+];
+
+const sourceHead = [
+  "علي نفقة الدولة",
+  "التأمين الصحي",
+  "الكنيسة",
+  "علي نفقتي الشخصية",
+  "مساعدة اشخاص",
 ];
 
 const disablity_type = [
@@ -65,7 +73,7 @@ const reltivity = [
 
 const incomerange = ["اقل من 300 جنية", "300-500", "500-1000", " اكثر من 1000"];
 
-const illnesses = [
+const illnessesHeads = [
   "سرطان",
   "سكر",
   "درن",
@@ -99,11 +107,12 @@ const sourceofmedication = [
 export {
   educationlevelhead,
   sourceofmedication,
-  illnesses,
+  illnessesHeads,
   incomerange,
   work_typehead,
   marriagestatushead,
   disablity_type,
   reltivity,
+  sourceHead,
   reson,
 };

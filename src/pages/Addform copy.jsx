@@ -138,13 +138,13 @@ function Addform() {
               <Menu>
                 <MenuHandler>
                   <Button>حالة رب الاسرة</Button>
-                </MenuHandler>
+                  </MenuHandler>
                 <MenuList>
                   <MenuItem
                     onClick={(e) => {
-                      setData({ ...data, satate: "عاجر" });
+                    setData({ ...data, satate: "عاجر" });
                     }}
-                  >
+                    >
                     عاجر
                   </MenuItem>
                   <MenuItem
