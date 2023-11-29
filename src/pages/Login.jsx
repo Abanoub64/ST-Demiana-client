@@ -3,7 +3,6 @@ import { toast } from "react-hot-toast";
 
 import { useNavigate } from "react-router-dom";
 import { Card, Input, Button, Typography } from "@material-tailwind/react";
-import axios from "axios";
 import useSignin from "../hooks/useSignin";
 function Login() {
   const { singup, isloading, error } = useSignin();

@@ -17,8 +17,7 @@ import {
 } from "@material-tailwind/react";
 import { FaLocationDot } from "react-icons/fa6";
 import axios from "axios";
-import { Chip } from "@material-tailwind/react";
-import Backbutton from "../components/Backbutton";
+
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { Input } from "@material-tailwind/react";
 import { Spinnner } from "../components/Spinnner";
@@ -27,7 +26,6 @@ import { PopoverDefault } from "../components/PopoverDefault";
 import { MedTables } from "../components/MedTables";
 import { ChildrenshowingTable } from "../components/ChildrenshowingTable";
 import ParentComponent from "../components/DetailsForm";
-import DataLable from "../components/DataWithLable";
 import LocationData from "../components/LocationData";
 
 const TABLE_HEAD = [, "", "العلاج", "الابناء", "السكن", "تفاصيل", "الاسم", ""];
@@ -41,8 +39,6 @@ function Database() {
     setIsloading(true);
     axios.get("/database").then((res) => {
       setData(res.data);
-      console.log(res.data);
-
       setIsloading(false);
     });
   }, []);

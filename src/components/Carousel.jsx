@@ -1,5 +1,4 @@
 import { Carousel } from "@material-tailwind/react";
-import { useState } from "react";
 
 export function CarouselDefault() {
   return (
