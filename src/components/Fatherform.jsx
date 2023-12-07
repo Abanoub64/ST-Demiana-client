@@ -171,8 +171,11 @@ function Fatherform({ updateinfo }) {
               label="تاريخ الميلاد"
             />
             <Input
+              error={String(fdata.idnumber).length < 14}
+              type={"text"}
+              pattern="\d{14}"
+              maxlength="14"
               size="md"
-              type="number"
               onChange={(e) => {
                 setfdata({ ...fdata, idnumber: e.target.value });
               }}

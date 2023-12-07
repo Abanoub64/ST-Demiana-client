@@ -43,18 +43,41 @@ function Addform() {
     updatelocation(locationdata);
   };
 
-  const createDataObject = () => {
-    return new Promise((resolve) => {
-      const newDataObject = {
-        father: father,
-        mother: mother,
-        Childrenlist: Childrenlist,
-        location: location,
-      };
+  const createDataObject = async () => {
+    const newDataObject = {
+      father: father,
+      mother: mother,
+      Childrenlist: Childrenlist,
+      location: location,
+    };
 
-      setdata(newDataObject);
-      resolve();
-    });
+    if (
+      !(
+        newDataObject.father.firstname ||
+        newDataObject.father.secondname ||
+        newDataObject.father.thirdname ||
+        newDataObject.father.forthname
+      )
+    ) {
+      return toast.error("اسم الاب ليس كاملا");
+    }
+
+    if (
+      !(
+        newDataObject.mother.firstname ||
+        newDataObject.mother.secondname ||
+        newDataObject.mother.thirdname ||
+        newDataObject.mother.forthname
+      )
+    ) {
+      return toast.error("اسم الام ليس كاملا");
+    }
+
+    if (!/^[0-9]{14,17}$/.test(newDataObject.father.idnumber)) {
+      return toast.error("تاكد من الرقم القومي الخاص بالاب");
+    } else {
+      return setdata(newDataObject), setAllOk(!allOk), Promise.resolve();
+    }
   };
 
   const submitData = async () => {
@@ -116,14 +139,17 @@ function Addform() {
             color="green"
             onClick={() => {
               submitData();
+              setInterval(() => {
+                window.location.reload();
+              }, 1000);
             }}
           >
             حفظ
           </Button>
           <Checkbox
-            onClick={(e) => {
-              setAllOk(!allOk);
-              createDataObject();
+            checked={allOk}
+            onClick={async (e) => {
+              await createDataObject();
             }}
             label="كل البيانات صحيحة ؟"
           />
