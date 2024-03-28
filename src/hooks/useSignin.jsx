@@ -2,42 +2,54 @@ import axios from "axios";
 import React, { useState } from "react";
 import useAuthContext from "./useAuthContext";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 function useSignin() {
   const navigate = useNavigate();
   const [error, setError] = useState(null);
-  const [isloading, setisloading] = useState(null);
+  const [isloading, setisloading] = useState(false);
   const { dispatch } = useAuthContext();
-  const singup = async (name, password) => {
+
+  const signup = async (phone_number, password) => {
     setisloading(true);
     setError(null);
 
-    const res = await axios.post("/login", {
-      Headers: {
-        "content-Type": "application/json",
-      },
-      name,
-      password,
-    });
-    if (!res.ok) {
-      setisloading(false);
-      setError(true);
-    }
-    if (res.ok) {
-      //save the user to localHOST
-      const json = res.json();
-      localStorage.setItem("user", JSON.stringify(json));
-      // update Auth
-      dispatch({
-        type: "LOGIN",
-        PAYLOAD: json,
+    try {
+      const res = await axios.post("/login", {
+        Headers: {
+          "content-Type": "application/json",
+        },
+        phone_number,
+        password,
       });
+
+      if (res.data.error) {
+        setError(res.data.error);
+        toast.error("حدث خطأ");
+        setisloading(false);
+      } else {
+        console.log(res.data);
+        const user = JSON.stringify(res.data); // Stringify the user data
+        localStorage.setItem("user", user);
+
+        dispatch({
+          type: "LOGIN",
+          payload: res.data,
+        });
+
+        setisloading(false);
+        toast.success("تم تسجيل الدخول بنجاح");
+        navigate("/select");
+      }
+    } catch (error) {
+      console.log(error);
+      setError("حدث خطأ");
       setisloading(false);
-      toast.success("Login successfull");
-      navigate("/database");
+      toast.error("حدث خطأ");
     }
   };
-  return { singup, isloading, error };
+
+  return { signup, isloading, error };
 }
 
 export default useSignin;

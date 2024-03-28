@@ -11,8 +11,12 @@ import Showdata from "./pages/Showdata";
 import { Toaster } from "react-hot-toast";
 
 import EditData from "./pages/EditData";
+import ClassSelction from "./pages/Selection";
+import Class from "./pages/Class";
+// axios.defaults.baseURL = "http://localhost:3000";
 
 axios.defaults.baseURL = "https://st-deimana-server.onrender.com";
+axios.defaults.withCredentials = true;
 
 function App() {
   return (
@@ -28,6 +32,8 @@ function App() {
         <Route path="/database/edit/:id" element={<EditData />} />
         <Route path="/database/delete/:id" element={<Delete />} />
         <Route path="/database/add" element={<Addform />} />
+        <Route path="/select" element={<ClassSelction />} />
+        <Route path="/class" element={<Class />} />
       </Routes>
     </>
   );

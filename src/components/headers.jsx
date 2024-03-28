@@ -11,6 +11,37 @@ const educationlevelhead = [
   "دكتوراه",
 ];
 
+export const rolesHeaders = [
+  "حضانة",
+  "اولي و تانية ابتدائي",
+  "تالتة و رابعة ابتدائي",
+  "خامسة و سادسة ابتدائي",
+  "احتياجات",
+  "اعدادي",
+  "ثانوي",
+  "شباب",
+];
+
+export const classHeaders = [
+  { class: "حضانة", classNumbers: [0, 1, 2] },
+  { class: "اولي و تانية ابتدائي", classNumbers: [3.4] },
+  { class: "تالتة و رابعة ابتدائي", classNumbers: [5, 6] },
+  { class: "خامسة و سادسة ابتدائي", classNumbers: [7, 8] },
+  { class: "اعدادي", classNumbers: [9, 10, 11] },
+  { class: "ثانوي", classNumbers: [12, 13, 14] },
+  { class: "احتياجات", classNumbers: [20] },
+  { class: "شباب", classNumbers: [15, 16] },
+];
+
+export const classDataHeaders = [
+  "GPS",
+  "ملاحظات",
+  "تاريخ الميلاد",
+  "التيليفون",
+  "العنوان",
+  "الاسم",
+  "م",
+];
 const sourceHead = [
   "علي نفقة الدولة",
   "التأمين الصحي",
