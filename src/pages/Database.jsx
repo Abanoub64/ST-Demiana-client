@@ -186,7 +186,7 @@ function Database() {
                         className=" text-base  font-normal"
                       >
                         {family.father.firstname} {family.father.secondname}{" "}
-                        {family.father.thirdname}s
+                        {family.father.thirdname}
                       </Typography>
                     </td>
                     <td className="p-0">
