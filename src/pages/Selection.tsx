@@ -55,7 +55,7 @@ export default function ClassSelction() {
         <p>{user.userdata.name}</p>
       </div>
 
-      <div className="w-full flex flex-shrink  h-auto  justify-between space-x-4 space-y-7 border-blue-gray-700 border-2 p-6 mt-14">
+      <div className="w-full flex sm:grid-cols-3  h-auto  justify-between space-x-4 space-y-7 border-blue-gray-700 border-2 p-6 mt-14">
         {classHeaders.map((head, index) => (
           <>
             {roles.includes(head.class) && (

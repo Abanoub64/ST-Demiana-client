@@ -31,7 +31,7 @@ import DataLable from "../components/DataWithLable";
 import LocationData from "../components/LocationData";
 import { authReducer } from "../context/AuthContext";
 
-const TABLE_HEAD = [, "", "العلاج", "الابناء", "السكن", "تفاصيل", "الاسم", ""];
+const TABLE_HEAD = ["", "العلاج", "الابناء", "السكن", "تفاصيل", "الاسم", "رقم"];
 
 function Database() {
   const [isloading, setIsloading] = useState(false);
@@ -101,7 +101,7 @@ function Database() {
                     key={family._id}
                     className="even:bg-blue-gray-50/50  text-center justify-center"
                   >
-                    <td className="p-4 items-center justify-center  w-fit">
+                    <td className=" items-center justify-center w-fit">
                       <PopoverDefault
                         content={
                           <Typography
@@ -127,7 +127,7 @@ function Database() {
                       />
                     </td>
 
-                    <td>
+                    <td className="p-2">
                       <Popover>
                         <PopoverHandler>
                           <Button color="green">
@@ -139,7 +139,7 @@ function Database() {
                         </PopoverContent>
                       </Popover>
                     </td>
-                    <td>
+                    <td className="p-2">
                       <Popover>
                         <PopoverHandler>
                           <Button color="indigo">
@@ -151,7 +151,7 @@ function Database() {
                         </PopoverContent>
                       </Popover>
                     </td>
-                    <td>
+                    <td className="p-2">
                       <Popover>
                         <PopoverHandler>
                           <Button color="pink">
@@ -166,7 +166,7 @@ function Database() {
                         </PopoverContent>
                       </Popover>
                     </td>
-                    <td>
+                    <td className="p-2">
                       <Popover>
                         <PopoverHandler>
                           <Button color="teal">
@@ -179,21 +179,20 @@ function Database() {
                       </Popover>
                     </td>
 
-                    <td className="p-4">
+                    <td className="p-0">
                       <Typography
                         variant="small"
                         color="blue-gray"
-                        className=" text-lg  font-normal"
+                        className=" text-base  font-normal"
                       >
-                        {family.father.firstname} {family.father.secondname}{" "}
-                        {family.father.thirdname}
+                        ابانوب ميلاد حليم ناشد
                       </Typography>
                     </td>
-                    <td className="p-4">
+                    <td className="p-0">
                       <Typography
                         variant="small"
                         color="blue-gray"
-                        className=" text-lg font-normal"
+                        className=" text-sm p-0 font-normal"
                       >
                         {index + 1}
                       </Typography>

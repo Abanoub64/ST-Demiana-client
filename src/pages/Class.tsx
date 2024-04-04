@@ -17,6 +17,7 @@ import { Spinnner } from "../components/Spinnner";
 import { Link } from "react-router-dom";
 import downloadExcel from "../components/ExcelDownload";
 import useClassContext from "../hooks/useClassContext";
+import Backbutton from "../components/Backbutton";
 
 export default function Class() {
   const { classdata, dispatch: classDispatch } = useClassContext();
@@ -56,14 +57,18 @@ export default function Class() {
       ) : (
         <Card className="h-full w-full ">
           <div className="flex justify-between mx-5 ">
-            <Button
-              className="bg-green-500 text-gray-300 w-auto h-auto"
-              onClick={() => {
-                downloadExcel(data);
-              }}
-            >
-              <PiMicrosoftExcelLogoFill />
-            </Button>
+            <div className="flex space-x-2">
+              <Backbutton distination={"/select"} />
+
+              <Button
+                className="bg-green-500 text-gray-300 w-auto h-auto"
+                onClick={() => {
+                  downloadExcel(data);
+                }}
+              >
+                <PiMicrosoftExcelLogoFill />
+              </Button>
+            </div>
             <span className="text-center  ">{classdata.selectedClass}</span>
           </div>
           <table className="w-full min-w-max table-auto text-left">
@@ -124,7 +129,7 @@ export default function Class() {
                         color="blue-gray"
                         className="font-normal text-center"
                       >
-                        {marks}
+                        {marks ?? marks}
                       </Typography>
                     </td>
                     <td className="p-4">
@@ -160,15 +165,7 @@ export default function Class() {
                         {address}
                       </Typography>
                     </td>
-                    <td className="p-4">
-                      <Typography
-                        variant="small"
-                        color="blue-gray"
-                        className="font-normal text-center"
-                      >
-                        {phone1}
-                      </Typography>
-                    </td>
+
                     <td className="p-4">
                       <Typography
                         variant="small"
