@@ -185,7 +185,8 @@ function Database() {
                         color="blue-gray"
                         className=" text-base  font-normal"
                       >
-                        ابانوب ميلاد حليم ناشد
+                        {family.father.firstname} {family.father.secondname}{" "}
+                        {family.father.thirdname}s
                       </Typography>
                     </td>
                     <td className="p-0">
