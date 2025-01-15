@@ -26,9 +26,9 @@ export default function Navbarr() {
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <a href="#" className="flex items-center">
-          Pages
-        </a>
+        <Link to="/" className="flex items-center">
+          Home
+        </Link>
       </Typography>
       <Typography
         as="li"
@@ -36,68 +36,40 @@ export default function Navbarr() {
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <a href="#" className="flex items-center">
-          Account
-        </a>
-      </Typography>
-      <Typography
-        as="li"
-        variant="small"
-        color="blue-gray"
-        className="p-1 font-normal"
-      >
-        <a href="#" className="flex items-center">
-          Blocks
-        </a>
-      </Typography>
-      <Typography
-        as="li"
-        variant="small"
-        color="blue-gray"
-        className="p-1 font-normal"
-      >
-        <a href="#" className="flex items-center">
-          Docs
-        </a>
+        <Link to="/database" className="flex items-center">
+          Database
+        </Link>
       </Typography>
     </ul>
   );
 
   return (
     <Navbar className="mx-auto max-w-screen-xl py-2 px-4 lg:px-8 bg-primary lg:py-4">
-      <div
-        id="container"
-        className="container mx-auto flex items-center justify-between text-blue-gray-900"
-      >
+      <div className="container mx-auto flex items-center justify-between text-blue-gray-900">
         <img
           src="logo.png"
-          className="w-[6%] h-[90%] m-0 p-2 scale-150 "
-          alt=""
+          className="w-16 h-16 md:w-24 md:h-24 lg:w-32 lg:h-32"
+          alt="Logo"
         />
-        <div className="hidden lg:block"></div>
-        <Link to={"/"}>
-          <Button
-            variant="gradient"
-            size="sm"
-            className="hidden lg:inline-block"
-          >
-            عن الكنيسة
-          </Button>
-        </Link>
-        <Link to={"/login"}>
-          <Button
-            variant="gradient"
-            size="sm"
-            className="hidden lg:inline-block"
-          >
-            الخدمة
-          </Button>
-        </Link>
+        <div className="hidden lg:block">{navList}</div>
+        <div className="hidden lg:flex lg:gap-2">
+          <Link to={"/"}>
+            <Button variant="gradient" size="sm">
+              عن الكنيسة
+            </Button>
+          </Link>
+          <Link to={"/login"}>
+            <Button variant="gradient" size="sm">
+              الخدمة
+            </Button>
+          </Link>
+        </div>
         <IconButton
           variant="text"
           className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
           ripple={false}
           onClick={() => setOpenNav(!openNav)}
+          aria-label="Toggle navigation"
         >
           {openNav ? (
             <svg
@@ -132,10 +104,13 @@ export default function Navbarr() {
         </IconButton>
       </div>
       <MobileNav open={openNav}>
-        <div className="container mx-auto">
-          <Button variant="gradient" size="sm" fullWidth className="mb-2">
-            <span>عن الكنيسة</span>
-          </Button>
+        <div className="container mx-auto p-4">
+          {navList}
+          <Link to={"/"}>
+            <Button variant="gradient" size="sm" fullWidth className="mb-2">
+              <span>عن الكنيسة</span>
+            </Button>
+          </Link>
           <Link to={"/login"}>
             <Button variant="gradient" size="sm" fullWidth className="mb-2">
               <span>الخدمة</span>
