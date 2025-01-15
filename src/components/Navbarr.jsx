@@ -2,7 +2,6 @@ import React from "react";
 import {
   Navbar,
   MobileNav,
-  Typography,
   Button,
   IconButton,
 } from "@material-tailwind/react";
@@ -18,31 +17,6 @@ export default function Navbarr() {
     );
   }, []);
 
-  const navList = (
-    <ul className="mb-4 mt-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
-      <Typography
-        as="li"
-        variant="small"
-        color="blue-gray"
-        className="p-1 font-normal"
-      >
-        <Link to="/" className="flex items-center">
-          Home
-        </Link>
-      </Typography>
-      <Typography
-        as="li"
-        variant="small"
-        color="blue-gray"
-        className="p-1 font-normal"
-      >
-        <Link to="/database" className="flex items-center">
-          Database
-        </Link>
-      </Typography>
-    </ul>
-  );
-
   return (
     <Navbar className="mx-auto max-w-screen-xl py-2 px-4 lg:px-8 bg-primary lg:py-4">
       <div className="container mx-auto flex items-center justify-between text-blue-gray-900">
@@ -51,7 +25,6 @@ export default function Navbarr() {
           className="w-16 h-16 md:w-24 md:h-24 lg:w-32 lg:h-32"
           alt="Logo"
         />
-        <div className="hidden lg:block">{navList}</div>
         <div className="hidden lg:flex lg:gap-2">
           <Link to={"/"}>
             <Button variant="gradient" size="sm">
@@ -105,7 +78,6 @@ export default function Navbarr() {
       </div>
       <MobileNav open={openNav}>
         <div className="container mx-auto p-4">
-          {navList}
           <Link to={"/"}>
             <Button variant="gradient" size="sm" fullWidth className="mb-2">
               <span>عن الكنيسة</span>
