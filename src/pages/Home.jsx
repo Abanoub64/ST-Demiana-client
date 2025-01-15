@@ -1,12 +1,10 @@
 import React from "react";
-import Navbarr from "../components/Navbarr";
 import { CarouselDefault } from "../components/Carousel";
-import { EcommerceCard } from "../components/Activites";
 
 function Home() {
   return (
     <>
-      <div className=" w-[50%]   mx-auto p-4 items-center ">
+      <div className="w-full md:w-[80%] lg:w-[60%] mx-auto p-4">
         <CarouselDefault />
       </div>
     </>

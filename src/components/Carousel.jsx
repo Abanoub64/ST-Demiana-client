@@ -1,10 +1,9 @@
 import { Carousel } from "@material-tailwind/react";
-import { useState } from "react";
 
 export function CarouselDefault() {
   return (
     <div>
-      <Carousel className="w-[70%] h-fit m-auto rounded-xl">
+      <Carousel className="w-full md:w-[80%] lg:w-[70%] h-fit m-auto rounded-xl">
         <img
           src="118268801_10218319216640776_6917048494106406267.jpg"
           alt="image 1"
