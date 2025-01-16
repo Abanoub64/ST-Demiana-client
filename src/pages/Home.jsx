@@ -1,5 +1,7 @@
 import React from "react";
 import { CarouselDefault } from "../components/Carousel";
+import { FaChurch, FaUsers, FaMusic } from "react-icons/fa";
+
 
 function Home() {
   return (
@@ -42,9 +44,15 @@ function Home() {
           <h3 className="text-xl font-semibold text-gray-700">أنشطة</h3>
           <ul className="list-disc list-inside text-gray-600">
             <li>خدمة كشفية مسيحية</li>
-            <li>مدارس احد</li>
-            <li>كورال كنسي</li>
-            <li>خدمة شباب</li>
+            <li className="flex items-center">
+    <FaChurch className="ml-2" /> خدمة كشفية مسيحية
+  </li>
+  <li className="flex items-center">
+    <FaUsers className="ml-2" /> مدارس احد
+  </li>
+  <li className="flex items-center">
+    <FaMusic className="ml-2" /> كورال كنسي
+  </li>
             <li>خدمة احتياجات</li>
             <li>خدمة شباب</li>
           </ul>

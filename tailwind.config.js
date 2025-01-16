@@ -7,7 +7,10 @@ module.exports = withMT({
       primary: "#20799E",
       btn: "10A8A8",
     },
-    extend: {},
+    extend: {
+      fontFamily: {
+        arabic: ["Amiri", "serif"], // Add your custom font here
+      },},
   },
   plugins: [],
 });
