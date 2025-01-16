@@ -2,7 +2,6 @@ import React from "react";
 import { CarouselDefault } from "../components/Carousel";
 import { FaChurch, FaUsers, FaMusic } from "react-icons/fa";
 
-
 function Home() {
   return (
     <div className="w-full md:w-[90%] lg:w-[80%] mx-auto p-4">
@@ -42,19 +41,25 @@ function Home() {
         {/* Activities */}
         <div className="mb-4 text-right">
           <h3 className="text-xl font-semibold text-gray-700">أنشطة</h3>
-          <ul className="list-disc list-inside text-gray-600">
-            <li>خدمة كشفية مسيحية</li>
-            <li className="flex items-center">
-    <FaChurch className="ml-2" /> خدمة كشفية مسيحية
-  </li>
-  <li className="flex items-center">
-    <FaUsers className="ml-2" /> مدارس احد
-  </li>
-  <li className="flex items-center">
-    <FaMusic className="ml-2" /> كورال كنسي
-  </li>
-            <li>خدمة احتياجات</li>
-            <li>خدمة شباب</li>
+          <ul className="list-none text-gray-600">
+            <li className="flex items-center justify-end">
+              <span>خدمة كشفية مسيحية</span>
+              <FaChurch className="ml-2" />
+            </li>
+            <li className="flex items-center justify-end">
+              <span>مدارس احد</span>
+              <FaUsers className="ml-2" />
+            </li>
+            <li className="flex items-center justify-end">
+              <span>كورال كنسي</span>
+              <FaMusic className="ml-2" />
+            </li>
+            <li className="flex items-center justify-end">
+              <span>خدمة احتياجات</span>
+            </li>
+            <li className="flex items-center justify-end">
+              <span>خدمة شباب</span>
+            </li>
           </ul>
         </div>
 
@@ -62,13 +67,13 @@ function Home() {
         <div className="text-right">
           <h3 className="text-xl font-semibold text-gray-700">تابعنا</h3>
           <a
-  href="https://www.facebook.com/pages/%D9%83%D9%86%D9%8A%D8%B3%D8%A9-%D8%A7%D9%84%D8%B4%D9%87%D9%8A%D8%AF%D8%A9-%D8%AF%D9%85%D9%8A%D8%A7%D9%86%D8%A9-%D9%88%D8%A7%D9%84%D8%A7%D9%86%D8%A8%D8%A7-%D8%A5%D8%A8%D8%B1%D8%A7%D9%85-%D8%A8%D8%A7%D9%84%D9%85%D8%B9%D8%B5%D8%B1%D8%A9/136779430459413e"
-  target="_blank"
-  rel="noopener noreferrer"
-  className="text-blue-600 hover:text-blue-800 transition-colors underline hover:no-underline"
->
-  Facebook
-</a>
+            href="https://www.facebook.com/pages/%D9%83%D9%86%D9%8A%D8%B3%D8%A9-%D8%A7%D9%84%D8%B4%D9%87%D9%8A%D8%AF%D8%A9-%D8%AF%D9%85%D9%8A%D8%A7%D9%86%D8%A9-%D9%88%D8%A7%D9%84%D8%A7%D9%86%D8%A8%D8%A7-%D8%A5%D8%A8%D8%B1%D8%A7%D9%85-%D8%A8%D8%A7%D9%84%D9%85%D8%B9%D8%B5%D8%B1%D8%A9/136779430459413e"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-600 hover:text-blue-800 transition-colors underline hover:no-underline"
+          >
+            Facebook
+          </a>
         </div>
       </div>
     </div>
