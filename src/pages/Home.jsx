@@ -1,6 +1,9 @@
 import React from "react";
 import { CarouselDefault } from "../components/Carousel";
-import { FaChurch, FaUsers, FaMusic,TbDisabled ,IoAccessibilityOutline  } from "react-icons/fa";
+import { FaChurch, FaUsers, FaMusic  } from "react-icons/fa";
+import { IoAccessibilityOutline } from "react-icons/io5";
+import { TbDisabled } from "react-icons/tb";
+
 
 function Home() {
   return (
