@@ -2,12 +2,7 @@ import React, { useState, useEffect } from "react";
 
 export function CarouselDefault() {
   const images = [
-    "2024-06-05.jpg",
-    "2021-06-15.jpg",
-    "118268801_10218319216640776_6917048494106406267.jpg",
-  "118268801_10218319216640776_6917048494106406267445.jpg",
-    "hqdefault.jpg",
-    "Fatherabakir.jpg",
+"2024-06-05.jpg","2021-06-15.jpg","118268801_10218319216640776_6917048494106406267.jpg","118268801_10218319216640776_6917048494106406267445.jpg","hqdefault.jpg","Fatherabakir.jpg",
   ];
 
   const [activeIndex, setActiveIndex] = useState(0);
@@ -41,18 +36,21 @@ export function CarouselDefault() {
       {/* Carousel Container */}
       <div
         className="flex transition-transform duration-500 ease-in-out"
-        style={{ transform: `translateX(-${activeIndex * 100}%)` }}
+        style={{
+          transform: `translateX(-${activeIndex * 100}%)`,
+          height: containerHeight, // Dynamic height based on aspect ratio
+        }}
       >
         {images.map((src, index) => (
           <div
             key={index}
             className="w-full flex-shrink-0"
-            style={{ aspectRatio: "16/9" }}
+            style={{ position: "relative", paddingTop: "56.25%" }} // Default padding for 16:9 ratio
           >
             <img
               src={src}
               alt={`Slide ${index + 1}`}
-              className="w-full h-full object-cover"
+              className="absolute top-0 left-0 w-full h-full object-contain" // Ensure the image fits inside the container
             />
           </div>
         ))}
