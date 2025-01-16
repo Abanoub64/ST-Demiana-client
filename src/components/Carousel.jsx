@@ -2,8 +2,10 @@ import React, { useState, useEffect } from "react";
 
 export function CarouselDefault() {
   const images = [
+    "2024-06-05.jpg",
+    "2021-06-15.jpg",
     "118268801_10218319216640776_6917048494106406267.jpg",
-    "118268801_10218319216640776_6917048494106406267445.jpg",
+  "118268801_10218319216640776_6917048494106406267445.jpg",
     "hqdefault.jpg",
     "Fatherabakir.jpg",
   ];
