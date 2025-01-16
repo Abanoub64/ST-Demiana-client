@@ -1,21 +1,21 @@
 import React from "react";
 import { CarouselDefault } from "../components/Carousel";
-import { FaChurch, FaUsers, FaMusic } from "react-icons/fa";
+import { FaChurch, FaUsers, FaMusic,TbDisabled ,IoAccessibilityOutline  } from "react-icons/fa";
 
 function Home() {
   return (
     <div className="w-full md:w-[90%] lg:w-[80%] mx-auto p-4">
-      {/* Carousel Section */}
-      <div className="w-full mb-8">
-        <CarouselDefault />
-      </div>
+    {/* Carousel Section */}
+    <div className="w-full mb-8">
+      <CarouselDefault />
+    </div>
 
-      {/* Information Section */}
-      <div className="w-full bg-white p-6 rounded-lg shadow-md">
-        {/* Church Name */}
-        <h2 className="text-2xl font-bold text-gray-800 mb-4 text-right">
-          كنيسة الشهيدة دميانة والأنبا ابرام
-        </h2>
+    {/* Information Section */}
+    <div className="w-full bg-white p-6 rounded-lg shadow-md">
+      {/* Church Name */}
+      <h2 className="text-2xl font-bold text-gray-800 mb-4 text-right">
+        كنيسة الشهيدة دميانة والأنبا ابرام
+      </h2>
 
         {/* Address */}
         <div className="mb-4 text-right">
@@ -56,9 +56,12 @@ function Home() {
             </li>
             <li className="flex items-center justify-end">
               <span>خدمة احتياجات</span>
+              <TbDisabled className="ml-2" />
             </li>
             <li className="flex items-center justify-end">
               <span>خدمة شباب</span>
+              <IoAccessibilityOutline className="ml-2" />
+
             </li>
           </ul>
         </div>

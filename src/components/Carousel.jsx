@@ -37,25 +37,22 @@ export function CarouselDefault() {
   };
 
   return (
-    <div className="relative w-full overflow-hidden rounded-xl">
+    <div className="relative w-full overflow-hidden rounded-xl border-4 border-white shadow-2xl bg-gradient-to-r from-blue-50 to-purple-50">
       {/* Carousel Container */}
       <div
         className="flex transition-transform duration-500 ease-in-out"
-        style={{
-          transform: `translateX(-${activeIndex * 100}%)`,
-          height: containerHeight, // Dynamic height based on aspect ratio
-        }}
+        style={{ transform: `translateX(-${activeIndex * 100}%)` }}
       >
         {images.map((src, index) => (
           <div
             key={index}
             className="w-full flex-shrink-0"
-            style={{ position: "relative", paddingTop: "56.25%" }} // Default padding for 16:9 ratio
+            style={{ aspectRatio: "16/9" }}
           >
             <img
               src={src}
               alt={`Slide ${index + 1}`}
-              className="absolute top-0 left-0 w-full h-full object-contain" // Ensure the image fits inside the container
+              className="w-full h-full object-cover"
             />
           </div>
         ))}
