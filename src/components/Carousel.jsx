@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { Carousel } from "@material-tailwind/react";
+import React, { useState, useEffect } from "react";
 
 export function CarouselDefault() {
   const images = [
@@ -10,6 +9,18 @@ export function CarouselDefault() {
   ];
 
   const [activeIndex, setActiveIndex] = useState(0);
+  const [containerHeight, setContainerHeight] = useState("auto");
+
+  // Function to calculate the aspect ratio of the active image
+  useEffect(() => {
+    const img = new Image();
+    img.src = images[activeIndex];
+    img.onload = () => {
+      const aspectRatio = img.width / img.height;
+      // Set the container height based on the aspect ratio
+      setContainerHeight(`${100 / aspectRatio}%`);
+    };
+  }, [activeIndex, images]);
 
   const handlePrev = () => {
     setActiveIndex((prevIndex) =>
@@ -24,21 +35,25 @@ export function CarouselDefault() {
   };
 
   return (
-    <div className="relative w-full h-[400px] md:h-[500px] lg:h-[600px] overflow-hidden rounded-xl">
-      {/* Carousel Images */}
+    <div className="relative w-full overflow-hidden rounded-xl">
+      {/* Carousel Container */}
       <div
         className="flex transition-transform duration-500 ease-in-out"
-        style={{ transform: `translateX(-${activeIndex * 100}%)` }}
+        style={{
+          transform: `translateX(-${activeIndex * 100}%)`,
+          height: containerHeight, // Dynamic height based on aspect ratio
+        }}
       >
         {images.map((src, index) => (
           <div
             key={index}
-            className="w-full h-full flex-shrink-0"
+            className="w-full flex-shrink-0"
+            style={{ position: "relative", paddingTop: "56.25%" }} // Default padding for 16:9 ratio
           >
             <img
               src={src}
               alt={`Slide ${index + 1}`}
-              className="w-full h-full object-cover"
+              className="absolute top-0 left-0 w-full h-full object-contain" // Ensure the image fits inside the container
             />
           </div>
         ))}
